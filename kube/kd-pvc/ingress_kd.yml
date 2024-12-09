@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: haproxy
+  name: kd4dt-vol-ingress
+spec:
+  rules:
+  - host: kd4dt-vol.nrp-nautilus.io
+    http:
+      paths:
+      - backend:
+          service:
+            name: kd4dt-vol-expose
+            port:
+              number: 80
+        path: /
+        pathType: ImplementationSpecific
+  tls:
+  - hosts:
+    - kd4dt-vol.nrp-nautilus.io
